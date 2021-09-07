@@ -3,14 +3,14 @@ import 'dart:ui';
 import 'package:apptide/Styles/colors.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({Key? key}) : super(key: key);
 
   @override
-  _LoginPageState createState() => _LoginPageState();
+  _SignUpPageState createState() => _SignUpPageState();
 }
 
-class _LoginPageState extends State<LoginPage> {
+class _SignUpPageState extends State<SignUpPage> {
   //For password field
   bool obcure = true;
   @override
@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       children: [
                         Text(
-                          "Sign In",
+                          "Sign Up",
                           style: TextStyle(
                             color: black,
                             fontWeight: FontWeight.bold,
@@ -73,14 +73,14 @@ class _LoginPageState extends State<LoginPage> {
                             //textFormField
                             Expanded(
                                 child: TextFormField(
-                              decoration: InputDecoration(
-                                  border: InputBorder.none,
-                                  hintText: "Username/Email",
-                                  hintStyle: TextStyle(
-                                      color: grey,
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold)),
-                            ))
+                                  decoration: InputDecoration(
+                                      border: InputBorder.none,
+                                      hintText: "Username/Email",
+                                      hintStyle: TextStyle(
+                                          color: grey,
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold)),
+                                ))
                           ],
                         ),
                         decoration: BoxDecoration(
@@ -146,17 +146,17 @@ class _LoginPageState extends State<LoginPage> {
                         margin: const EdgeInsets.only(bottom: 15),
                       ),
                       //lost your password text field
-                      Container(
-                        alignment: Alignment.centerRight,
-                        child: TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            "Lost your password?",
-                            style:
-                                TextStyle(decoration: TextDecoration.underline, color: grey),
-                          ),
-                        ),
-                      )
+                      // Container(
+                      //   alignment: Alignment.centerRight,
+                      //   child: TextButton(
+                      //     onPressed: () {},
+                      //     child: Text(
+                      //       "Lost your password?",
+                      //       style:
+                      //       TextStyle(decoration: TextDecoration.underline, color: grey),
+                      //     ),
+                      //   ),
+                      // )
                     ],
                   ),
 
@@ -172,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Sign In",
+                          "Sign Up",
                           style: TextStyle(color: white),
                         ),
                         Icon(
@@ -188,7 +188,7 @@ class _LoginPageState extends State<LoginPage> {
                   Container(
                     margin: const EdgeInsets.symmetric(vertical: 40),
                     alignment: Alignment.center,
-                    child: Text("Or Sign in with"),
+                    child: Text("Or Sign Up with"),
                   ),
 
                   Container(

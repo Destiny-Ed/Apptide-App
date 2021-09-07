@@ -16,7 +16,7 @@ class AppTide extends StatelessWidget {
     return MaterialApp(
       theme: ThemeData(
         scaffoldBackgroundColor: backgroundColor,
-
+        fontFamily: "Kodchasan"
       ),
       home: Splash(),
     );
