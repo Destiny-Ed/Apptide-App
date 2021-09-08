@@ -4,7 +4,6 @@ import 'package:apptide/Screens/AuthScreen/sign_up.dart';
 import 'package:apptide/Styles/colors.dart';
 import 'package:flutter/material.dart';
 
-
 class AuthSelectionPage extends StatelessWidget {
   const AuthSelectionPage({Key? key}) : super(key: key);
 
@@ -22,24 +21,27 @@ class AuthSelectionPage extends StatelessWidget {
                 children: [
                   Column(
                     children: [
-                      Image.asset("assets/logo.png", width : 150),
-                      const SizedBox(height: 10,),
+                      Hero(
+                          tag: "app",
+                          child: Image.asset("assets/logo.png", width: 150)),
+                      const SizedBox(
+                        height: 10,
+                      ),
                       Container(
                         child: Text("Dreams Come True"),
                       ),
                     ],
                   ),
-
-
                   Column(
                     children: [
                       GestureDetector(
                         onTap: () {
-                          PageNavigator(ctx : context).nextPage(SignUpPage());
+                          PageNavigator(ctx: context).nextPage(SignUpPage());
                         },
                         child: Container(
                           margin: const EdgeInsets.only(bottom: 25),
-                          padding: const EdgeInsets.symmetric(vertical:15, horizontal: 35),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 35),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: primaryColor,
@@ -49,24 +51,21 @@ class AuthSelectionPage extends StatelessWidget {
                             children: [
                               Text(
                                 "Sign Up",
-                                style: TextStyle(color: white, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    color: white, fontWeight: FontWeight.bold),
                               ),
-                              Icon(
-                                Icons.arrow_forward_rounded,
-                                size: 16,
-                                color: white,
-                              ),
+                              Image.asset("assets/arrow.png", color: white, width : 16,),
                             ],
                           ),
                         ),
                       ),
-
                       GestureDetector(
                         onTap: () {
-                          PageNavigator(ctx : context).nextPage(LoginPage());
+                          PageNavigator(ctx: context).nextPage(LoginPage());
                         },
                         child: Container(
-                          padding: const EdgeInsets.symmetric(vertical:15, horizontal: 35),
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 15, horizontal: 35),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
                             color: black,
@@ -76,13 +75,10 @@ class AuthSelectionPage extends StatelessWidget {
                             children: [
                               Text(
                                 "Sign In",
-                                style: TextStyle(color: white, fontWeight: FontWeight.bold),
+                                style: TextStyle(
+                                    color: white, fontWeight: FontWeight.bold),
                               ),
-                              Icon(
-                                Icons.arrow_forward_rounded,
-                                size: 16,
-                                color: white,
-                              ),
+                              Image.asset("assets/arrow.png", color: white, width : 16,),
                             ],
                           ),
                         ),

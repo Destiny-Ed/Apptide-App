@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:apptide/Contants/route.dart';
+import 'package:apptide/Screens/MainPages/home.dart';
 import 'package:apptide/Styles/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -16,6 +18,9 @@ class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        iconTheme: IconThemeData(color: black),
+        backgroundColor: Colors.transparent,elevation: 0,),
       body: CustomScrollView(
         slivers: [
           SliverToBoxAdapter(
@@ -162,25 +167,26 @@ class _SignUpPageState extends State<SignUpPage> {
 
                   //submit button
 
-                  Container(
-                    padding: const EdgeInsets.symmetric(vertical:15, horizontal: 35),
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: black,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Sign Up",
-                          style: TextStyle(color: white),
-                        ),
-                        Icon(
-                          Icons.arrow_forward_rounded,
-                          size: 16,
-                          color: white,
-                        ),
-                      ],
+                  GestureDetector(
+                    onTap: () {
+                      PageNavigator(ctx : context).nextPage(HomePage());
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(vertical:15, horizontal: 35),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: black,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Sign Up",
+                            style: TextStyle(color: white),
+                          ),
+                          Image.asset("assets/arrow.png", color: white, width : 16,),
+                        ],
+                      ),
                     ),
                   ),
 
