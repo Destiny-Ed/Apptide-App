@@ -68,7 +68,7 @@ class AuthSelectionPage extends StatelessWidget {
                               vertical: 15, horizontal: 35),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: black,
+                            color: buttonColor,
                           ),
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,

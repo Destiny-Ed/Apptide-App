@@ -35,22 +35,23 @@ class _UploadContentPageState extends State<UploadContentPage> with SingleTicker
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
         title: Text(
           "Upload Content",
-          style: TextStyle(color: black, fontWeight: FontWeight.bold),
+          style: TextStyle(color: black, fontSize: 20, fontWeight: FontWeight.bold),
         ),
         iconTheme: IconThemeData(color: black),
         actions: [
           Padding(
-            padding: const EdgeInsets.all(10.0),
+            padding: const EdgeInsets.all(5.0),
             child: CircleAvatar(
-              radius: 12,
-              backgroundColor: white,
+              // radius: 20,
+              backgroundColor: buttonColor,
               child: Icon(
                 Icons.person,
-                color: black,
+                color: white,
                 size: 16,
               ),
             ),
