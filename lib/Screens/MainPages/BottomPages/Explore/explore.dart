@@ -12,7 +12,31 @@ class ExplorePage extends StatefulWidget {
   _ExplorePageState createState() => _ExplorePageState();
 }
 
-class _ExplorePageState extends State<ExplorePage> {
+class _ExplorePageState extends State<ExplorePage> with SingleTickerProviderStateMixin {
+  bool _isPlaying = true;
+
+  int _playingIndex = 0;
+
+  late AnimationController controller;
+
+  @override
+   void initState() {
+     controller = AnimationController(
+       vsync: this,
+       duration: const Duration(seconds: 5),
+     )..addListener(() {
+         setState(() {});
+       });
+     controller.repeat(reverse: false);
+     super.initState();
+   }
+  ///
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,27 +74,130 @@ class _ExplorePageState extends State<ExplorePage> {
           )
         ],
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              height: MediaQuery.of(context).size.height - 150,
-              child: ListView(
-                primary: true,
+      body: Stack(
+        children: [
+          CustomScrollView(
+            slivers: [
+              SliverToBoxAdapter(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10),
+                  height: MediaQuery.of(context).size.height -
+                      (_isPlaying == true ? 250 : 155),
+                  child: ListView(
+                    primary: true,
+                    children: [
+                      ///Top container
+                      TopBannerView(),
 
-                children: [
-                  ///Top container
-                  TopBannerView(),
+                      ViewContainer(image_talents, title_talents, "Top Talents",
+                          (index) {
+                        setState(() {
+                          _isPlaying = true;
+                          _playingIndex = index!;
+                        });
+                      }),
+                      ViewContainer(image_popular, title_popular, "Popular",
+                          (index) {
+                        setState(() {
+                          _isPlaying = true;
+                          _playingIndex = index!;
+                        });
+                      }),
 
-                  ViewContainer(image_talents, title_talents, "Top Talents", null),
-                  ViewContainer(image_popular, title_popular, "Popular", null),
+                      ViewContainer(image_popular, title_talents, "Trending",
+                          (index) {
+                        setState(() {
+                          _isPlaying = true;
+                          _playingIndex = index!;
+                        });
+                      }),
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
 
-                  ViewContainer(image_popular,title_talents, "Trending", null),
+          ///Bottom container showing currently playing music
+          Positioned(
+            bottom: 0,
+            child: _isPlaying == false
+                ? Container()
+                : Container(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    // height: 40,
+                    width: MediaQuery.of(context).size.width,
+                    decoration: BoxDecoration(
+                      color: white,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        ///Play , next buttons
+                        Container(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Image.asset("assets/backward.png")),
+                                  Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      CircleAvatar(
+                                        backgroundImage:
+                                            AssetImage(image_talents[_playingIndex]),
+                                        child: Image.asset("assets/play.png"),
+                                      ),
+                                      Positioned(
+                                        child: CircularProgressIndicator(
+                                          value: controller.value,
+                                          backgroundColor: grey,
+                                          color: grey,
+                                          valueColor: AlwaysStoppedAnimation<Color>(primaryColor),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                  IconButton(
+                                      onPressed: () {},
+                                      icon: Image.asset(
+                                          "assets/fast_forward.png")),
+                                ],
+                              ),
+                              Container(
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 15),
+                                alignment: Alignment.centerLeft,
+                                child: Text("1:34 / 3:26",
+                                    style: TextStyle(color: grey)),
+                              )
+                            ],
+                          ),
+                        ),
 
-                ],
-              ),
-            ),
+                        ///Current playing music title
+                        Container(
+                            child: Row(
+                          children: [
+                            Text(
+                              "Fendi - Blaqbones\nft Joeboy",
+                              style: TextStyle(color: grey),
+                              textAlign: TextAlign.end,
+                            ),
+                            IconButton(
+                                onPressed: () {
+                                  setState(() {
+                                    _isPlaying = !_isPlaying;
+                                  });
+                                },
+                                icon: Image.asset("assets/close.png")),
+                          ],
+                        ))
+                      ],
+                    )),
           )
         ],
       ),
@@ -108,14 +235,20 @@ class _ExplorePageState extends State<ExplorePage> {
     "assets/popular_one.png",
     "assets/popular_two.png",
     "assets/popular_three.png",
+    "assets/popular_one.png",
+    "assets/popular_two.png",
+    "assets/popular_three.png",
   ];
 
   List<String> title_popular = [
     "Apollo",
     "Gucci Gang",
     "Apollo",
-        "Apollo",
+    "Apollo",
     "Gucci Gang",
-    "Apollo"
+    "Apollo",
+    "Apollo",
+    "Gucci Gang",
+    "Apollo",
   ];
 }

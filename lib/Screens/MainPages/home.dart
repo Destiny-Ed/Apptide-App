@@ -18,28 +18,31 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: _bottonNavigationPages[_currentPage],
       bottomNavigationBar: Container(
-        padding : const EdgeInsets.symmetric(horizontal: 8),
-        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-          color: black,
+        color: white,
+        child: Container(
+          padding : const EdgeInsets.symmetric(horizontal: 8),
+          margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: black,
 
-        ),
-        child: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
-          items: _bottomItems(),
-          currentIndex: _currentPage,
-          type: BottomNavigationBarType.fixed,
-          unselectedItemColor: grey,
-          showSelectedLabels: true,
-          showUnselectedLabels: false,
-          selectedIconTheme: IconThemeData(color: primaryColor),
-          selectedItemColor: primaryColor,
-          onTap: (value) {
-            setState(() {
-              _currentPage = value;
-            });
-          },
+          ),
+          child: BottomNavigationBar(
+            backgroundColor: Colors.transparent,
+            items: _bottomItems(),
+            currentIndex: _currentPage,
+            type: BottomNavigationBarType.fixed,
+            unselectedItemColor: grey,
+            showSelectedLabels: true,
+            showUnselectedLabels: false,
+            selectedIconTheme: IconThemeData(color: primaryColor),
+            selectedItemColor: primaryColor,
+            onTap: (value) {
+              setState(() {
+                _currentPage = value;
+              });
+            },
+          ),
         ),
       ),
     );

@@ -52,27 +52,28 @@ class _TopBannerViewState extends State<TopBannerView> {
       padding: const EdgeInsets.only(bottom: 5),
       // margin: const EdgeInsets.symmetric(horizontal: 10.0),
       height: 140,
-      child: Column(children: <Widget>[
-        Expanded(
-          child: PageView(
-            onPageChanged: (int value) {
-              setState(() {
-                bannerIndex = value;
-              });
-            },
-            controller: _pageController,
-            children: List.generate(totalLength!, (index) {
-              return GestureDetector(
-                onTap: () {
+      child: Stack(
+        children: [
+          Column(
+              children: <Widget>[
+            Expanded(
+              child: PageView(
+                onPageChanged: (int value) {
+                  setState(() {
+                    bannerIndex = value;
+                  });
                 },
-                child:Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10)
-                  ),
-                  height: 120,
-                  child: Stack(
-                    children: [
-                      Image.asset(
+                controller: _pageController,
+                children: List.generate(totalLength!, (index) {
+                  return GestureDetector(
+                    onTap: () {
+                    },
+                    child:Container(
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10)
+                      ),
+                      height: 120,
+                      child: Image.asset(
                         "assets/top_banner.png",
                         width: double.infinity,
                         fit: BoxFit.cover,
@@ -84,36 +85,37 @@ class _TopBannerViewState extends State<TopBannerView> {
                           );
                         },
                       ),
-                      ///Indicator
-                      Positioned(
-                        bottom: 15,
-                        left: 25,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: List<Widget>.generate(
-                            totalLength!,
-                                (int index) => Padding(
-                              padding: const EdgeInsets.all(2.0),
-                              child: CircleAvatar(
-                                radius: 3,
-                                backgroundColor: bannerIndex == index
-                                    ? white
-                                    : grey,
-                              ),
-                            ),
-                          ),
-                        ),
-                      )
-                    ],
-                  ),
-                )
-              );
-            })
-          ),
-        ),
-        //Banner Row Indicator
+                    )
+                  );
+                })
+              ),
+            ),
+            //Banner Row Indicator
 
-      ]),
+          ]),
+
+          ///Indicator
+          Positioned(
+            bottom: 15,
+            left: 25,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: List<Widget>.generate(
+                totalLength!,
+                    (int index) => Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: CircleAvatar(
+                    radius: 3,
+                    backgroundColor: bannerIndex == index
+                        ? white
+                        : grey,
+                  ),
+                ),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

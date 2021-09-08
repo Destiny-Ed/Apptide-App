@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 
 class ViewContainer extends StatefulWidget {
   ///Constructor
-  ViewContainer(this.images, this.musicTitle, this.title, this.viewMore,
+  ViewContainer(this.images, this.musicTitle, this.title, this.onTap,
       {Key? key})
       : super(key: key);
 
@@ -17,7 +17,7 @@ class ViewContainer extends StatefulWidget {
   List<String> images;
   List<String> musicTitle;
 
-  VoidCallback? viewMore;
+  Function(int?)? onTap;
 
   @override
   _ViewContainerState createState() => _ViewContainerState();
@@ -76,51 +76,54 @@ class _ViewContainerState extends State<ViewContainer> {
                   scrollDirection: Axis.horizontal,
                   child: Row(children: <Widget>[
                     ...List<Widget>.generate(widget.images.length, (int index) {
-                      return Container(
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Stack(
-                          alignment: AlignmentDirectional.center,
-                          children: <Widget>[
-                            ///Thumbnail
-                            Container(
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(10)),
-                              child: Image.asset(
-                                widget.images[index],
-                                fit: BoxFit.cover,
-                              ),
-                              height: 143,
-                              // width: 113,
-                            ),
-
-                            Positioned(
-                              bottom: 15,
-                              // left: 20,
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 2),
+                      return GestureDetector(
+                        onTap: () => widget.onTap!(index),
+                        child: Container(
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Stack(
+                            alignment: AlignmentDirectional.center,
+                            children: <Widget>[
+                              ///Thumbnail
+                              Container(
                                 decoration: BoxDecoration(
-                                    color: white.withOpacity(0.5),
                                     borderRadius: BorderRadius.circular(10)),
-                                child: Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    ///text
-                                    Text(widget.musicTitle[index]),
-
-                                    ///icon
-                                    Icon(
-                                      Icons.play_circle_filled_outlined,
-                                      size: 20,
-                                    )
-                                  ],
+                                child: Image.asset(
+                                  widget.images[index],
+                                  fit: BoxFit.cover,
                                 ),
-                                constraints: BoxConstraints(minWidth: 80),
+                                height: 143,
+                                // width: 113,
                               ),
-                            )
-                          ],
+
+                              Positioned(
+                                bottom: 15,
+                                // left: 20,
+                                child: Container(
+                                  padding:
+                                      const EdgeInsets.symmetric(horizontal: 2),
+                                  decoration: BoxDecoration(
+                                      color: white.withOpacity(0.5),
+                                      borderRadius: BorderRadius.circular(10)),
+                                  child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      ///text
+                                      Text(widget.musicTitle[index]),
+
+                                      ///icon
+                                      Icon(
+                                        Icons.play_circle_filled_outlined,
+                                        size: 20,
+                                      )
+                                    ],
+                                  ),
+                                  constraints: BoxConstraints(minWidth: 80),
+                                ),
+                              )
+                            ],
+                          ),
                         ),
                       );
                     }),
