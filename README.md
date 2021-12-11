@@ -2,6 +2,8 @@
 
 A new Flutter project.
 
+![Alt](https://repobeats.axiom.co/api/embed/dee4d495d5e8a906f670a5c63720cb427f312888.svg "Repobeats analytics image")
+
 ## Getting Started
 
 This project is a starting point for a Flutter application.
